@@ -1,1 +1,8 @@
-aa+bb=aa/bb
+aa+bb==aa/bb
+ab+bb1<=aa1/bb1
+ac+bb2>=aa2/bb2
+2.234e45.75
+
+ad+bb3!=aa3/bb3
+ae+bb4||aa4/bb4
+af+bb5&&aa5/bb5

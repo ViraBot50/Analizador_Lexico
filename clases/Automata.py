@@ -7,6 +7,7 @@ class Automata:
     a_matriz={}
     a_constantes={}
     a_tokeInvalido=""
+    a_excepciones={}
 
 
     def __init__(self):
@@ -15,7 +16,7 @@ class Automata:
         self.a_constantes["q6000"]=  6001
         self.a_constantes["q7000"] = 7001
         self.a_constantes["q8000"] = 8001
-
+        self.a_excepciones={"q2060","q2090","q2120","q2130","q2150","q2170"}
 
     def m_inicReviLexico(self):
         v_respuesta=""
@@ -63,7 +64,7 @@ class Automata:
 
         if v_error:
             v_respuesta.clear()
-            v_respuesta["q999"]="Error in line "+str(v_linea)+" by invalid token "+self.a_tokeInvalido+"<--"
+            v_respuesta["q999"]="Error in line "+str(v_linea)+" by invalid token "+self.a_tokeInvalido+" <--"
 
 
         return v_respuesta
@@ -81,6 +82,8 @@ class Automata:
             v_caracter = ""
             v_tokeActual = ""
             v_estaActual = self.a_estaInicial
+
+            #while automata
             while v_posicion<v_lengLinea and self.a_matriz[v_estaActual]["a"]!="-" :
                 v_caracter=p_linea[v_posicion]
                 v_tokeActual+=v_caracter
@@ -89,18 +92,18 @@ class Automata:
                     v_caracter="espacio"
 
                 v_estaActual=self.a_matriz[v_estaActual][v_caracter]
-                print(v_posicion)
                 v_posicion+=1
-
+            #end while automata
+            print(v_estaActual,"+",v_tokeActual)
             if v_estaActual!="q0" :
 
                 if v_estaActual=="q999":
                     v_respuesta=True
                     self.a_tokeInvalido=v_tokeActual
                 else:
-                    if v_caracter != "espacio" and self.m_veriRequEspacio(v_estaActual):
+                    if v_caracter != "espacio" and (self.m_veriRequEspacio(v_estaActual,2000,5040) or v_estaActual in self.a_excepciones) :
                         v_posicion -= 1
-                        v_tokeActual = v_tokeActual[:-1]
+                        v_tokeActual = v_tokeActual[:-1] #a{ -> a
 
                     if v_tokeActual not in p_listTokens:
                         if v_estaActual in self.a_constantes:
@@ -115,10 +118,10 @@ class Automata:
         return v_respuesta
 
 
-    def m_veriRequEspacio(self,p_Serie):
+    def m_veriRequEspacio(self,p_Serie,p_limiInferior,p_limiSuperior):
         v_respuesta=False
         num = int(p_Serie[1:])
-        if not (2000 <= num <= 5000):
+        if not (p_limiInferior <= num <= p_limiSuperior):
             v_respuesta=True
 
         return v_respuesta
