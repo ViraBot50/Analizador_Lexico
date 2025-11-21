@@ -1,1 +1,1 @@
-Error in line 4 by invalid token 2.234e45. <--
+Error en la linea: 25. Por identificador no valido... juan# <--

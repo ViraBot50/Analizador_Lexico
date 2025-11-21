@@ -1,8 +1,25 @@
-aa+bb==aa/bb
-ab+bb1<=aa1/bb1
-ac+bb2>=aa2/bb2
-2.234e45.75
+class operaciones{
+    int suma(a,b){
+        boolean bandera=true;
+        return a+b;
+    }
 
-ad+bb3!=aa3/bb3
-ae+bb4||aa4/bb4
-af+bb5&&aa5/bb5
+    double resta(a,b){
+        return a-b;
+    }
+}
+
+if(edad>18||edad==edadexacta){
+    edad/32;
+}else{
+    edad/2;
+}
+
+void
+this.edad
+while(int new)
+float numeros = new float[10];
+
+
+
+double juan# = 32.345.42
