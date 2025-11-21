@@ -109,7 +109,7 @@ class Automata:
             if v_estaActual!="q0" :
 
                 if v_estaActual=="q999" or v_estaActual=="q998":
-                    # Si empieza con digito y dio error, forzamos q998 (error numerico)
+                    # Si empieza con digito y dio error, asignar q998 (error numerico)
                     if v_tokeActual and v_tokeActual[0].isdigit():
                         v_respuesta="q998"
                     else:
@@ -120,6 +120,7 @@ class Automata:
                         v_posicion -= 1
                         v_tokeActual = v_tokeActual[:-1] 
 
+                    v_tokeActual = v_tokeActual.strip() #! cambio
                     if v_tokeActual not in p_listTokens:
                         if v_estaActual in self.a_constantes:
                             p_listTokens[v_tokeActual]="q"+str(self.a_constantes[v_estaActual])
